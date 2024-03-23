@@ -151,6 +151,26 @@ namespace WebBanHang.Areas.Admin.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> DeleteAccount(string user , string id)
+        {
+            var code = new {Success=false};
+            var item = UserManager.FindByName(user);
+            if(item != null)
+            {
+                var rolesForUser = UserManager.GetRoles(id);
+                if(rolesForUser != null)
+                {
+                    foreach(var role in rolesForUser)
+                    {
+                        await UserManager.RemoveFromRoleAsync(id, role);
+                    }
+                }
+                var res = await UserManager.DeleteAsync(item);
+                code = new {Success = res.Succeeded};
+            }
+            return Json(code);
+        }
+
         private IAuthenticationManager AuthenticationManager
         {
             get

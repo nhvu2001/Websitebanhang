@@ -22,7 +22,8 @@
 
         }
     </script>
-    @Html.AntiForgeryToken()<h3>Thông tin khách hàng</h3>
+    @Html.AntiForgeryToken()
+    <h3>Thông tin khách hàng</h3>
     if (!Request.IsAuthenticated)
     {
         <div class="form-group">

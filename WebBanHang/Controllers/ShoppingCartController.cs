@@ -10,7 +10,7 @@ using WebBanHang.Models.EF;
 
 namespace WebBanHang.Controllers
 {
-    [Authorize]
+    
     public class ShoppingCartController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -118,6 +118,7 @@ namespace WebBanHang.Controllers
             }
             return PartialView();
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CheckOut(OrderViewModel req)
